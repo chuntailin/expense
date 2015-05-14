@@ -1,8 +1,8 @@
 class Accounting < ActiveRecord::Base
-  belongs_to :usern
+  belongs_to :user
 
-  def self.dashboard(user)
-    data=user.Accounting.select("title,sum(expense) as total").group("title")
-    data.map{|d|[d.title,d.total]}
+  def self.dashboard(current_user)
+    data = Accounting.select("title, sum(expense) as total").where({ user: current_user }).group("title")
+    data.map{|d|[ d.title, d.total ]}
   end
 end

@@ -5,9 +5,11 @@ class AccountingsController < ApplicationController
   # GET /accountings
   # GET /accountings.json
   def index
-    @accountings = current_user.accountings.last(5)
+    @accountings = Accounting.where(user: current_user).last(5)
   end
-
+  def dashboard
+    @data=Accounting.dashboard(current_user)
+  end
   # GET /accountings/1
   # GET /accountings/1.json
   def show
@@ -59,10 +61,6 @@ class AccountingsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to accountings_url, notice: 'Accounting was successfully destroyed.' }
       format.json { head :no_content }
-    end
-
-    def dashboard
-      @data=Accounting.dashboard(current_user)
     end
   end
 
