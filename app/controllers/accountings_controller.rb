@@ -27,7 +27,7 @@ class AccountingsController < ApplicationController
   # POST /accountings
   # POST /accountings.json
   def create
-    @accounting = current_user.accountings.new(accounting_params)
+    @accounting =  current_user.accountings.new(accounting_params)
 
     respond_to do |format|
       if @accounting.save
