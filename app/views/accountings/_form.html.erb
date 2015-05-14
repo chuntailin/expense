@@ -1,0 +1,29 @@
+<%= form_for(@accounting) do |f| %>
+  <% if @accounting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@accounting.errors.count, "error") %> prohibited this accounting from being saved:</h2>
+
+      <ul>
+      <% @accounting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.select :title, options_for_select(["home", "personal", "car", "shopping", "food"]) %>
+  </div>
+  <div class="field">
+    <%= f.label :expense %><br>
+    <%= f.number_field :expense %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br>
+    <%= f.datetime_select :time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
