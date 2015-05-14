@@ -1,5 +1,5 @@
 class Accounting < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :usern
 
   def self.dashboard(user)
     data=user.Accounting.select("title,sum(expense) as total").group("title")
